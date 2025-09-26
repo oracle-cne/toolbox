@@ -1,0 +1,16 @@
+@Library('olcne-pipeline') _
+import com.oracle.olcne.pipeline.BranchPattern
+
+registry = "container-registry.oracle.com/olcne"
+imageTag = "latest"
+
+imagePipeline(
+  branchPattern: new BranchPattern(master: '(main|release/.*)', feature: '(?!^main$)(?!^release/.*$)(^.*$)'),
+  platforms: ['ol8'],
+  architectures: ['x86_64', 'aarch64'],
+  containers: [
+    ( registry + '/toolbox:' + imageTag ): 'olcne/toolbox:' + imageTag,
+  ],
+  buildScript: "podman build -t $registry/toolbox:$imageTag -f dockerfiles/Dockerfile",
+  publishImage: true,
+)
