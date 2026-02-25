@@ -13,4 +13,5 @@ imagePipeline(
   ],
   buildScript: "podman build -t $registry/ock:$imageTag -f dockerfiles/Dockerfile",
   publishImage: true,
+  noSlim: [],
 )
