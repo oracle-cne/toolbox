@@ -9,7 +9,7 @@ imagePipeline(
   platforms: ['ol8'],
   architectures: ['x86_64', 'aarch64'],
   containers: [
-    ( registry + '/toolbox:' + imageTag ): 'olcne/ock:' + imageTag,
+    ( registry + '/ock:' + imageTag ): 'olcne/ock:' + imageTag,
   ],
   buildScript: "podman build -t $registry/ock:$imageTag -f dockerfiles/Dockerfile",
   publishImage: true,
